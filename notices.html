@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notices - Campusphere</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fd;
+    }
+
+    .header {
+      background: #2563eb;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      width: 85%;
+      margin: 30px auto;
+    }
+
+    .notice {
+      background: white;
+      padding: 18px 22px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .notice h4 {
+      margin: 0 0 6px 0;
+      color: #1e3a8a;
+    }
+
+    .notice p {
+      margin: 0;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .badge-new {
+      background: #22c55e;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    .badge-old {
+      background: #9ca3af;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h2>College Notices</h2>
+    <a href="student.html" style="color:white;text-decoration:none;">⬅ Back</a>
+  </div>
+
+  <!-- NOTICES -->
+  <div class="container">
+
+    <div class="notice">
+      <div>
+        <h4>Mid Examinations Schedule</h4>
+        <p>Mid exams will start from 10th Feb 2026. Check timetable.</p>
+      </div>
+      <div class="badge-new">NEW</div>
+    </div>
+
+    <div class="notice">
+      <div>
+        <h4>Assignment Submission Deadline</h4>
+        <p>Last date for assignment submission is 5th Feb 2026.</p>
+      </div>
+      <div class="badge-new">NEW</div>
+    </div>
+
+    <div class="notice">
+      <div>
+        <h4>Fee Due Reminder</h4>
+        <p>Students with pending fees must clear dues before 30th Jan.</p>
+      </div>
+      <div class="badge-new">NEW</div>
+    </div>
+
+    <div class="notice">
+      <div>
+        <h4>Republic Day Holiday</h4>
+        <p>College will remain closed on 26th January.</p>
+      </div>
+      <div class="badge-old">OLD</div>
+    </div>
+
+    <a href="student.html" class="back">Back to Dashboard</a>
+  </div>
+
+</body>
+</html>

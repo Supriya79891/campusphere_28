@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campusphere | Departments</title>
+  <style>
+    body{margin:0;font-family:Arial;background:#f4f7fb}
+    header{
+      background:#1e40af;color:#fff;
+      padding:16px 30px
+    }
+    .container{padding:40px;max-width:1200px;margin:auto}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:25px
+    }
+    .card{
+      background:#fff;padding:25px;border-radius:14px;
+      box-shadow:0 10px 25px rgba(0,0,0,.1)
+    }
+    h3{color:#1e40af;margin:0 0 10px}
+    .count{font-size:26px;font-weight:bold}
+    p{color:#555;font-size:14px;margin:6px 0}
+    a{text-decoration:none;color:#2563eb}
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>Campusphere – Departments</h2>
+</header>
+
+<div class="container">
+  <div class="grid" id="deptGrid"></div>
+
+  <br>
+  <a href="admin-dashboard.html">← Back to Dashboard</a>
+</div>
+
+<script>
+/* ======================
+   PROFESSIONAL DATA SET
+   ====================== */
+
+const departments = [
+  {name:"AIDS", students:120, faculty:8},
+  {name:"CSE", students:180, faculty:12},
+  {name:"CSD", students:90, faculty:6},
+  {name:"AIML", students:110, faculty:7},
+  {name:"EEE", students:100, faculty:6},
+  {name:"MECH", students:140, faculty:9},
+  {name:"CIVIL", students:80, faculty:5},
+  {name:"IT", students:95, faculty:6}
+];
+
+/* ======================
+   RENDER CARDS
+   ====================== */
+
+const grid = document.getElementById("deptGrid");
+
+departments.forEach(d=>{
+  let card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <h3>${d.name}</h3>
+    <div class="count">${d.students + d.faculty}</div>
+    <p>👨‍🎓 Students: ${d.students}</p>
+    <p>👨‍🏫 Faculty: ${d.faculty}</p>
+    <p>Status: <b>Active</b></p>
+  `;
+  grid.appendChild(card);
+});
+</script>
+
+</body>
+</html>

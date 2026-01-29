@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Seed Faculty Database</title>
+</head>
+<body>
+<h2>Adding Faculty Data...</h2>
+
+<script>
+/* CLEAR OLD FACULTY DATA (optional) */
+// localStorage.clear();
+
+/* FACULTY LIST WITH DETAILS */
+const facultyData = [
+  {
+    id:"FAC001",
+    name:"Dr. Suresh Kumar",
+    department:"AIDS",
+    designation:"Professor",
+    experience:12,
+    subjects:["Deep Learning","NLP","Reinforcement Learning"],
+    email:"suresh@aits.edu.in"
+  },
+  {
+    id:"FAC002",
+    name:"Ms. Kavya",
+    department:"CSE",
+    designation:"Assistant Professor",
+    experience:6,
+    subjects:["Data Structures","DBMS","OS"],
+    email:"kavya@aits.edu.in"
+  },
+  {
+    id:"FAC003",
+    name:"Mr. Ramesh",
+    department:"AIML",
+    designation:"Assistant Professor",
+    experience:7,
+    subjects:["Machine Learning","Big Data Analytics"],
+    email:"ramesh@aits.edu.in"
+  },
+  {
+    id:"FAC004",
+    name:"Dr. Prasad",
+    department:"EEE",
+    designation:"Professor",
+    experience:15,
+    subjects:["Power Systems","Control Systems"],
+    email:"prasad@aits.edu.in"
+  },
+  {
+    id:"FAC005",
+    name:"Ms. Anusha",
+    department:"CIVIL",
+    designation:"Assistant Professor",
+    experience:5,
+    subjects:["Structural Engineering","Surveying"],
+    email:"anusha@aits.edu.in"
+  },
+  {
+    id:"FAC006",
+    name:"Mr. Vinay",
+    department:"MECH",
+    designation:"Assistant Professor",
+    experience:8,
+    subjects:["Thermodynamics","Manufacturing"],
+    email:"vinay@aits.edu.in"
+  },
+  {
+    id:"FAC007",
+    name:"Dr. Suman",
+    department:"CIC",
+    designation:"Professor",
+    experience:10,
+    subjects:["Cyber Security","Ethical Hacking"],
+    email:"suman@aits.edu.in"
+  },
+  {
+    id:"FAC008",
+    name:"Ms. Divya",
+    department:"CSD",
+    designation:"Assistant Professor",
+    experience:4,
+    subjects:["Cloud Computing","DevOps"],
+    email:"divya@aits.edu.in"
+  }
+];
+
+/* SAVE TO localStorage */
+facultyData.forEach(f=>{
+  localStorage.setItem("faculty_" + f.id, JSON.stringify(f));
+});
+
+document.body.innerHTML += "<h3>✅ FACULTY DATABASE ADDED SUCCESSFULLY</h3>";
+</script>
+</body>
+</html>

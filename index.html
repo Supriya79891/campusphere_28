@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campusphere Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-body">
+
+<div class="login-box">
+  <h1>Campusphere</h1>
+  <p>Smart Digital Campus Management System</p>
+
+  <input type="text" id="userId" placeholder="Roll Number / Faculty ID / Admin ID">
+  <input type="password" id="password" placeholder="Password">
+
+  <button class="student-btn" onclick="studentLogin()">Student Login</button>
+  <button class="faculty-btn" onclick="facultyLogin()">Faculty Login</button>
+
+  <button style="margin-top:10px;background:#ef4444;color:#fff;border:none;padding:10px;border-radius:6px"
+          onclick="adminLogin()">
+    Admin Login
+  </button>
+</div>
+
+<script>
+function studentLogin(){
+  let id = document.getElementById("userId").value.trim();
+  let pw = document.getElementById("password").value.trim();
+
+  if(id === "" || pw === ""){
+    alert("Roll Number and Password are required");
+    return;
+  }
+
+  // 🔐 basic prototype password check
+  if(pw !== "student123"){
+    alert("Invalid Student Password");
+    return;
+  }
+
+  localStorage.setItem("role","student");
+  localStorage.setItem("roll", id);
+
+  window.location.href = "student.html";
+}
+
+function facultyLogin(){
+  let id = document.getElementById("userId").value.trim();
+  let pw = document.getElementById("password").value.trim();
+
+  if(id === "" || pw === ""){
+    alert("Faculty ID and Password are required");
+    return;
+  }
+
+  if(pw !== "faculty123"){
+    alert("Invalid Faculty Password");
+    return;
+  }
+
+  localStorage.setItem("role","faculty");
+  localStorage.setItem("facultyId", id);
+
+  window.location.href = "faculty-dashboard.html";
+}
+
+function adminLogin(){
+  let id = document.getElementById("userId").value.trim();
+  let pw = document.getElementById("password").value.trim();
+
+  if(id === "" || pw === ""){
+    alert("Admin ID and Password are required");
+    return;
+  }
+
+  if(id === "admin" && pw === "admin123"){
+    localStorage.setItem("role","admin");
+    window.location.href = "admin-dashboard.html";
+  }else{
+    alert("Invalid Admin Credentials");
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Apply Leave - Campusphere</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fd;
+    }
+
+    .header {
+      background: #2563eb;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      width: 420px;
+      margin: 50px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    h3 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+    }
+
+    select, input, textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      background: #22c55e;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .success {
+      margin-top: 15px;
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 18px;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h2>Apply Leave / OD</h2>
+    <a href="student.html" style="color:white;text-decoration:none;">⬅ Back</a>
+  </div>
+
+  <!-- FORM -->
+  <div class="container">
+    <h3>Leave Application</h3>
+
+    <form onsubmit="submitLeave(event)">
+
+      <label>Leave Type</label>
+      <select required>
+        <option value="">-- Select --</option>
+        <option>Casual Leave</option>
+        <option>Medical Leave</option>
+        <option>On Duty (OD)</option>
+      </select>
+
+      <label>From Date</label>
+      <input type="date" required>
+
+      <label>To Date</label>
+      <input type="date" required>
+
+      <label>Reason</label>
+      <textarea placeholder="Enter reason for leave" required></textarea>
+
+      <button class="submit-btn">Apply Leave</button>
+    </form>
+
+    <div class="success" id="successMsg">
+      ✅ Leave request submitted successfully!
+    </div>
+
+    <div style="text-align:center;">
+      <a href="student.html" class="back">Back to Dashboard</a>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    function submitLeave(e) {
+      e.preventDefault();
+      document.getElementById("successMsg").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>

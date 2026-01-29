@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Dashboard - Campusphere</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(rgba(243,246,253,0.96), rgba(243,246,253,0.96)),
+        url("college-logo.png") no-repeat center;
+      background-size: 420px;
+    }
+
+    .header {
+      background: #2563eb;
+      color: white;
+      padding: 18px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logout {
+      background: #ef4444;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .info-card {
+      background: white;
+      width: 420px;
+      margin: 40px auto 30px;
+      padding: 15px 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    .info-card p {
+      margin: 8px 0;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 240px);
+      gap: 30px;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .card:hover { transform: translateY(-6px); }
+
+    .icon { font-size: 36px; margin-bottom: 10px; }
+
+    .title {
+      font-weight: bold;
+      color: #1e3a8a;
+      margin-bottom: 8px;
+    }
+
+    .value { font-size: 20px; font-weight: bold; }
+
+    @media(max-width:900px){
+      .cards{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body onload="loadStudent()">
+
+  <div class="header">
+    <h2>Campusphere – Student Dashboard</h2>
+    <a href="login.html" class="logout" onclick="logout()">Logout</a>
+  </div>
+
+  <div class="info-card">
+    <p>Roll Number: <span id="roll">-</span></p>
+    <p>Branch: <span id="branch">-</span></p>
+  </div>
+
+  <!-- DASHBOARD (UNCHANGED) -->
+  <div class="cards">
+    <div class="card" onclick="location.href='CGPA.html'"><div class="icon">🎓</div><div class="title">CGPA</div><div class="value">7.86</div></div>
+    <div class="card" onclick="location.href='supplies.html'"><div class="icon">❗</div><div class="title">No. of Supplies</div><div class="value">0</div></div>
+    <div class="card" onclick="location.href='internals.html'"><div class="icon">📝</div><div class="title">Internal Marks</div><div class="value">View</div></div>
+    <div class="card" onclick="location.href='leave.html'"><div class="icon">📨</div><div class="title">Apply OD / Leave</div><div class="value">Request</div></div>
+    <div class="card" onclick="location.href='notices.html'"><div class="icon">📢</div><div class="title">Notices</div><div class="value">3 New</div></div>
+    <div class="card" onclick="location.href='fees.html'"><div class="icon">💰</div><div class="title">Fee Dues</div><div class="value">₹12,000</div></div>
+    <div class="card" onclick="location.href='assignment.html'"><div class="icon">📚</div><div class="title">Assignment</div><div class="value">Submit</div></div>
+    <div class="card" onclick="location.href='attendance.html'"><div class="icon">📊</div><div class="title">Attendance</div><div class="value">82%</div></div>
+    <div class="card" onclick="location.href='library.html'"><div class="icon">📚</div><div class="title">Library</div><div class="value">Access</div></div>
+   <div class="card" onclick="window.location.href='student-profile.html'">
+  <div class="icon">👤</div>
+  <div class="title">My Profile</div>
+  <div class="value">View</div>
+</div>
+  </div>
+
+<script>
+function loadStudent(){
+  let roll = localStorage.getItem("roll");
+
+  /* 🔐 PROTECTION */
+  if(!roll){
+    alert("Please login first");
+    window.location.href="login.html";
+    return;
+  }
+
+  document.getElementById("roll").innerText = roll;
+
+  let branch="Unknown";
+  if(roll.includes("1A30")) branch="AIDS";
+  else if(roll.includes("1A33")) branch="AIML";
+  else if(roll.includes("1A02")) branch="EEE";
+  else if(roll.includes("1A01")) branch="CIVIL";
+  else if(roll.includes("1A03")) branch="MECHANICAL";
+  else if(roll.includes("1A36")) branch="CIC";
+  else if(roll.includes("1A32")) branch="CSD";
+  else if(roll.includes("1A05")) branch="CSE";
+
+  document.getElementById("branch").innerText = branch;
+}
+
+function logout(){
+  localStorage.removeItem("roll");
+  localStorage.removeItem("role");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin | Manage Users</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#f4f7fb;
+      padding:30px;
+    }
+
+    h2{color:#1e3a8a}
+
+    .box{
+      background:#fff;
+      padding:25px;
+      border-radius:14px;
+      box-shadow:0 8px 20px rgba(0,0,0,.15);
+      margin-bottom:30px;
+      max-width:900px;
+    }
+
+    input,select,button{
+      padding:10px;
+      margin:8px;
+      width:200px;
+    }
+
+    button{
+      background:#2563eb;
+      color:white;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#fff;
+      box-shadow:0 8px 20px rgba(0,0,0,.1);
+    }
+
+    th,td{
+      padding:12px;
+      border:1px solid #ddd;
+      text-align:center;
+    }
+
+    th{
+      background:#2563eb;
+      color:white;
+    }
+
+    .remove{
+      background:#ef4444;
+      padding:6px 10px;
+      border:none;
+      border-radius:5px;
+      color:white;
+      cursor:pointer;
+    }
+
+    .back{
+      display:inline-block;
+      margin-top:20px;
+      background:#2563eb;
+      color:white;
+      padding:8px 16px;
+      text-decoration:none;
+      border-radius:6px;
+    }
+  </style>
+</head>
+
+<body onload="loadUsers()">
+
+<h2>Admin – Manage Users</h2>
+
+<!-- ADD USER -->
+<div class="box">
+  <h3>Add New User</h3>
+
+  <select id="role">
+    <option value="student">Student</option>
+    <option value="faculty">Faculty</option>
+    <option value="admin">Admin</option>
+  </select>
+
+  <input type="text" id="uid" placeholder="Roll / Faculty ID / Admin ID">
+  <input type="text" id="name" placeholder="Name">
+
+  <button onclick="addUser()">Add User</button>
+</div>
+
+<!-- USER LIST -->
+<table>
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Role</th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="userTable"></tbody>
+</table>
+
+<a href="admin-dashboard.html" class="back">⬅ Back to Dashboard</a>
+
+<script>
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+function loadUsers(){
+  let table = document.getElementById("userTable");
+  table.innerHTML = "";
+
+  users.forEach((u,index)=>{
+    table.innerHTML += `
+      <tr>
+        <td>${index+1}</td>
+        <td>${u.role}</td>
+        <td>${u.id}</td>
+        <td>${u.name}</td>
+        <td>
+          <button class="remove" onclick="removeUser(${index})">Remove</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function addUser(){
+  let role = document.getElementById("role").value;
+  let id = document.getElementById("uid").value.trim();
+  let name = document.getElementById("name").value.trim();
+
+  if(id==="" || name===""){
+    alert("Enter all details");
+    return;
+  }
+
+  users.push({role,id,name});
+  localStorage.setItem("users",JSON.stringify(users));
+
+  document.getElementById("uid").value="";
+  document.getElementById("name").value="";
+
+  loadUsers();
+}
+
+function removeUser(index){
+  if(confirm("Are you sure to remove this user?")){
+    users.splice(index,1);
+    localStorage.setItem("users",JSON.stringify(users));
+    loadUsers();
+  }
+}
+</script>
+
+</body>
+</html>

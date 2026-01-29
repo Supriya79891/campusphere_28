@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Attendance Analytics - Campusphere</title>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fd;
+    }
+
+    .header {
+      background: #2563eb;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      width: 90%;
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    h3 {
+      text-align: center;
+      color: #1e3a8a;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background: #e0e7ff;
+    }
+
+    /* 🔴 BELOW 75% STYLE */
+    .low-attendance {
+      background-color: #fee2e2;
+      color: #991b1b;
+      font-weight: bold;
+    }
+
+    .chart-box {
+      width: 480px;
+      margin: 40px auto;
+    }
+
+    .overall {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 25px;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h2>Subject-wise Attendance Analytics</h2>
+    <a href="student.html" style="color:white;text-decoration:none;">⬅ Back</a>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container">
+
+    <h3>Semester Attendance – Subject Wise</h3>
+
+    <!-- TABLE -->
+    <table id="attendanceTable">
+      <tr>
+        <th>Subject</th>
+        <th>Total Classes</th>
+        <th>Present</th>
+        <th>Attendance %</th>
+      </tr>
+
+      <tr data-percent="82">
+        <td>Deep Learning</td><td>22</td><td>18</td><td>82%</td>
+      </tr>
+
+      <tr data-percent="80">
+        <td>Social Network Analysis</td><td>20</td><td>16</td><td>80%</td>
+      </tr>
+
+      <tr data-percent="83">
+        <td>Big Data Analytics</td><td>24</td><td>20</td><td>83%</td>
+      </tr>
+
+      <tr data-percent="81">
+        <td>Natural Language Processing</td><td>21</td><td>17</td><td>81%</td>
+      </tr>
+
+      <tr data-percent="74">
+        <td>IFSE</td><td>18</td><td>14</td><td>74%</td>
+      </tr>
+
+      <tr data-percent="88">
+        <td>Technical Paper Writing</td><td>16</td><td>14</td><td>88%</td>
+      </tr>
+
+      <tr data-percent="79">
+        <td>Reinforcement Learning</td><td>19</td><td>15</td><td>79%</td>
+      </tr>
+    </table>
+
+    <!-- CHART -->
+    <div class="chart-box">
+      <canvas id="attendanceChart"></canvas>
+    </div>
+
+    <div class="overall">
+      Overall Attendance: <span style="color:green;">81%</span>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="student.html" class="back">Back to Dashboard</a>
+    </div>
+
+  </div>
+
+  <!-- CHART SCRIPT -->
+  <script>
+    new Chart(document.getElementById("attendanceChart"), {
+      type: "doughnut",
+      data: {
+        labels: [
+          "Deep Learning (82%)","SNA (80%)","BDA (83%)",
+          "NLP (81%)","IFSE (74%)","TPW (88%)","RL (79%)"
+        ],
+        datasets: [{
+          data: [82,80,83,81,78,88,79],
+          backgroundColor: [
+            "#60a5fa","#34d399","#fbbf24",
+            "#a78bfa","#f87171","#22c55e","#38bdf8"
+          ]
+        }]
+      },
+      options:{plugins:{legend:{position:"bottom"}}}
+    });
+  </script>
+
+  <!-- 🔴 BELOW 75% HIGHLIGHT + ALERT -->
+  <script>
+    let rows = document.querySelectorAll("#attendanceTable tr[data-percent]");
+    let lowList = [];
+
+    rows.forEach(row=>{
+      let percent = parseInt(row.dataset.percent);
+      if(percent < 75){
+        row.classList.add("low-attendance");
+        lowList.push(row.children[0].innerText + " (" + percent + "%)");
+      }
+    });
+
+    if(lowList.length > 0){
+      alert(
+        "⚠️ Attendance Warning!\n\nBelow 75% in:\n" +
+        lowList.join("\n") +
+        "\n\nImprove attendance to be exam eligible."
+      );
+    }
+  </script>
+
+</body>
+</html>

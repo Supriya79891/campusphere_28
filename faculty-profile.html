@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Faculty Profile - Campusphere</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#f3f6fd;
+    }
+
+    .header{
+      background:#1e40af;
+      color:#fff;
+      padding:16px 30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .container{
+      max-width:900px;
+      margin:40px auto;
+      background:#fff;
+      padding:30px;
+      border-radius:14px;
+      box-shadow:0 10px 25px rgba(0,0,0,.15);
+    }
+
+    h2{
+      color:#1e3a8a;
+      text-align:center;
+      margin-bottom:30px;
+    }
+
+    .profile-grid{
+      display:grid;
+      grid-template-columns:1fr 2fr;
+      gap:30px;
+    }
+
+    .photo{
+      text-align:center;
+    }
+
+    .photo img{
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      border:4px solid #1e40af;
+    }
+
+    .photo h3{
+      margin-top:10px;
+      color:#1e3a8a;
+    }
+
+    .details table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    .details td{
+      padding:12px;
+      border-bottom:1px solid #ddd;
+    }
+
+    .details td:first-child{
+      font-weight:bold;
+      color:#374151;
+      width:40%;
+    }
+
+    .back{
+      margin-top:30px;
+      display:inline-block;
+      background:#1e40af;
+      color:#fff;
+      padding:8px 16px;
+      border-radius:6px;
+      text-decoration:none;
+    }
+  </style>
+</head>
+
+<body onload="loadFacultyProfile()">
+
+<div class="header">
+  <h2>Campusphere – Faculty Profile</h2>
+  <a href="faculty-dashboard.html" style="color:white;text-decoration:none;">⬅ Back</a>
+</div>
+
+<div class="container">
+
+  <h2>Faculty Information</h2>
+
+  <div class="profile-grid">
+
+    <!-- PHOTO -->
+    <div class="photo">
+      <img src="faculty.png" alt="Faculty Photo">
+      <h3 id="facultyName">Faculty Name</h3>
+    </div>
+
+    <!-- DETAILS -->
+    <div class="details">
+      <table>
+        <tr><td>Faculty ID</td><td id="fid">-</td></tr>
+        <tr><td>Department</td><td id="dept">-</td></tr>
+        <tr><td>Designation</td><td id="desig">Assistant Professor</td></tr>
+        <tr><td>College</td><td>AITS Tirupati</td></tr>
+        <tr><td>Email</td><td id="email">-</td></tr>
+        <tr><td>Mobile</td><td>9XXXXXXXXX</td></tr>
+        <tr><td>Experience</td><td>6 Years</td></tr>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function loadFacultyProfile(){
+  let fid = localStorage.getItem("facultyId");
+
+  if(!fid){
+    alert("Please login first");
+    window.location.href="login.html";
+    return;
+  }
+
+  document.getElementById("fid").innerText = fid;
+  document.getElementById("email").innerText =
+    fid.toLowerCase()+"@aits.edu.in";
+
+  let dept="General";
+  let name="Faculty Member";
+
+  /* SIMPLE MAPPING (prototype) */
+  if(fid.includes("AIDS")){ dept="AIDS"; name="Dr. AIDS Faculty"; }
+  else if(fid.includes("AIML")){ dept="AIML"; name="Dr. AIML Faculty"; }
+  else if(fid.includes("CSE")){ dept="CSE"; name="Dr. CSE Faculty"; }
+  else if(fid.includes("EEE")){ dept="EEE"; name="Dr. EEE Faculty"; }
+  else if(fid.includes("MECH")){ dept="MECHANICAL"; name="Dr. Mech Faculty"; }
+  else if(fid.includes("CIVIL")){ dept="CIVIL"; name="Dr. Civil Faculty"; }
+
+  document.getElementById("dept").innerText = dept;
+  document.getElementById("facultyName").innerText = name;
+}
+</script>
+
+</body>
+</html>

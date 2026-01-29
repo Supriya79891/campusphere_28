@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campusphere – Admin Dashboard</title>
+  <style>
+    body{margin:0;font-family:Arial;background:#f4f7fb}
+    .header{
+      background:#1e40af;color:#fff;
+      padding:18px 30px;
+      display:flex;justify-content:space-between;align-items:center
+    }
+    .logout{
+      background:#ef4444;color:#fff;border:none;
+      padding:8px 14px;border-radius:6px;cursor:pointer
+    }
+    .container{padding:40px;max-width:1200px;margin:auto}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:25px
+    }
+    .card{
+      background:#fff;padding:25px;border-radius:14px;
+      box-shadow:0 10px 25px rgba(0,0,0,.1);
+      cursor:pointer;transition:.25s
+    }
+    .card:hover{transform:translateY(-6px)}
+    h3{color:#1e40af;margin:10px 0}
+    p{color:#555;font-size:14px}
+    .value{font-size:30px;font-weight:bold;color:#000}
+    .icon{font-size:34px}
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h2>Campusphere – Admin Dashboard</h2>
+  <button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<div class="container">
+  <div class="grid">
+
+    <div class="card" onclick="go('admin-total-users.html')">
+      <div class="icon">👥</div>
+      <h3>Total Users</h3>
+      <p>Students & Faculty</p>
+    </div>
+
+    <div class="card" onclick="go('admin-attendance.html')">
+      <div class="icon">📊</div>
+      <h3>Academic Reports</h3>
+      <p>Average Attendance</p>
+    </div>
+
+    <div class="card" onclick="go('admin-faculty.html')">
+      <div class="icon">👨‍🏫</div>
+      <h3>Faculty Details</h3>
+      <p>Total Faculty</p>
+    </div>
+
+    <div class="card" onclick="go('admin-departments.html')">
+      <div class="icon">🏫</div>
+      <h3>Departments</h3>
+      <p>Active Departments</p>
+    </div>
+    <div class="card" onclick="go('admin-academic-calendar.html')">
+  <div class="icon">📅</div>
+  <h3>Academic Calendar</h3>
+  <p>Events & Exams</p>
+</div>
+<div class="card" onclick="window.location.href='admin-manage-users.html'">
+  <div class="icon">👥</div>
+  <h3>Manage Users</h3>
+  <p>Add / Remove Students, Faculty</p>
+</div>
+
+
+  </div>
+</div>
+
+<script>
+/* ======================
+   PROFESSIONAL MOCK DATA
+   ====================== */
+
+const students = [
+  {roll:"23A01", dept:"AIDS", attendance:82},
+  {roll:"23A02", dept:"AIDS", attendance:75},
+  {roll:"23A03", dept:"CSE", attendance:88},
+  {roll:"23A04", dept:"CSD", attendance:91},
+  {roll:"23A05", dept:"EEE", attendance:69},
+  {roll:"23A06", dept:"MECH", attendance:77}
+];
+
+const faculty = [
+  {id:"F01", dept:"AIDS"},
+  {id:"F02", dept:"CSE"},
+  {id:"F03", dept:"CSD"},
+  {id:"F04", dept:"EEE"},
+  {id:"F05", dept:"MECH"}
+];
+
+const departments = ["AIDS","CSE","CSD","EEE","MECH","CIVIL","AIML","IT"];
+
+/* ======================
+   DASHBOARD CALCULATIONS
+   ====================== */
+
+let totalUsers = students.length + faculty.length;
+
+let avgAtt =
+  Math.round(
+    students.reduce((s,a)=>s+a.attendance,0)/students.length
+  );
+
+document.getElementById("totalUsers").innerText = totalUsers;
+document.getElementById("avgAttendance").innerText = avgAtt + "%";
+document.getElementById("facultyCount").innerText = faculty.length;
+document.getElementById("deptCount").innerText = departments.length;
+
+/* ====================== */
+
+function go(page){ window.location.href = page; }
+function logout(){
+  localStorage.clear();
+  window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>

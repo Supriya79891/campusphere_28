@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student List - Campusphere</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#f4f7fb;
+      padding:30px;
+    }
+
+    h2{
+      color:#1e3a8a;
+      margin-bottom:20px;
+    }
+
+    table{
+      width:100%;
+      background:#fff;
+      border-collapse:collapse;
+      box-shadow:0 8px 20px rgba(0,0,0,.1);
+    }
+
+    th,td{
+      padding:12px;
+      border:1px solid #ddd;
+      text-align:center;
+      font-size:14px;
+    }
+
+    th{
+      background:#2563eb;
+      color:white;
+      position:sticky;
+      top:0;
+    }
+
+    tr:nth-child(even){
+      background:#f9fafb;
+    }
+
+    .back{
+      display:inline-block;
+      margin-top:20px;
+      text-decoration:none;
+      background:#2563eb;
+      color:#fff;
+      padding:8px 16px;
+      border-radius:6px;
+    }
+  </style>
+</head>
+
+<body onload="loadStudents()">
+
+<h2>Student List</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Roll Number</th>
+      <th>Name</th>
+      <th>Branch</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody id="studentTable"></tbody>
+</table>
+
+<a href="faculty-dashboard.html" class="back">⬅ Back to Dashboard</a>
+
+<script>
+function loadStudents(){
+
+  const branches = [
+    {code:"1A30", name:"AIDS"},
+    {code:"1A33", name:"AIML"},
+    {code:"1A05", name:"CSE"},
+    {code:"1A32", name:"CSD"},
+    {code:"1A02", name:"EEE"},
+    {code:"1A03", name:"MECH"},
+    {code:"1A01", name:"CIVIL"},
+    {code:"1A36", name:"CIC"}
+  ];
+
+  let table = document.getElementById("studentTable");
+  let count = 1;
+
+  // 🔥 Generate 100 students automatically
+  branches.forEach(branch=>{
+    for(let i=1;i<=13;i++){   // 8 branches × 13 ≈ 104 students
+      let roll =
+        "23AK" + branch.code + i.toString().padStart(2,"0");
+
+      let name = "Student " + count;
+
+      let row = `
+        <tr>
+          <td>${count}</td>
+          <td>${roll}</td>
+          <td>${name}</td>
+          <td>${branch.name}</td>
+          <td>3-1</td>
+        </tr>
+      `;
+
+      table.innerHTML += row;
+      count++;
+    }
+  });
+}
+</script>
+
+</body>
+</html>
+

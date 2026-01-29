@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Supply Status - Campusphere</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fd;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: #2563eb;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .message-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .message-box {
+      background: #ecfdf5;
+      padding: 40px 50px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    .message-box h2 {
+      color: #047857;
+      margin-bottom: 15px;
+    }
+
+    .message-box p {
+      font-size: 18px;
+      color: #065f46;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 25px;
+      background: #2563eb;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h2>Supply Status</h2>
+    <a href="student.html" style="color:white;text-decoration:none;">⬅ Back</a>
+  </div>
+
+  <!-- MESSAGE -->
+  <div class="message-container">
+    <div class="message-box">
+      <h2>🎉 Congratulations!</h2>
+      <p>
+        You have <b>NO supplementary subjects</b>.<br>
+        You are <b>academically clear</b> for this semester.
+      </p>
+
+      <a href="student.html" class="back">Back to Dashboard</a>
+    </div>
+  </div>
+
+</body>
+</html>

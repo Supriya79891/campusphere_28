@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome | Campusphere</title>
+
+  <style>
+    body{
+      margin:0;
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      background:#ffffff;
+      font-family:'Poppins', Arial, sans-serif;
+    }
+
+    /* TITLE */
+    .title{
+      display:flex;
+      margin-bottom:20px;
+    }
+
+    .title span{
+      font-size:42px;
+      font-weight:600;
+      color:#1e88e5;
+      opacity:0;
+      animation:appear 0.6s ease forwards;
+    }
+
+    /* LOGO */
+    .logo{
+      width:180px;
+    }
+
+    /* BUTTON */
+    .btn{
+      margin-top:30px;
+      padding:14px 40px;
+      font-size:18px;
+      font-weight:600;
+      color:white;
+      background:linear-gradient(135deg,#1e88e5,#64b5f6);
+      border:none;
+      border-radius:30px;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(30,136,229,.35);
+    }
+
+    .btn:hover{
+      transform:scale(1.05);
+    }
+
+    /* ANIMATION */
+    @keyframes appear{
+      from{
+        transform:translateX(20px);
+        opacity:0;
+      }
+      to{
+        transform:translateX(0);
+        opacity:1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TITLE -->
+  <div class="title" id="title"></div>
+
+  <!-- LOGO -->
+  <img src="C:\Users\rapur\Desktop\campusphere\WhatsApp Image 2026-01-29 at 5.18.49 PM.jpg.jpeg" class="logo" alt="Campusphere Logo">
+
+  <!-- BUTTON -->
+  <button class="btn" onclick="goLogin()">Welcome</button>
+
+<script>
+  const text = "CAMPUSPHERE";
+  const container = document.getElementById("title");
+
+  text.split("").forEach((char,index)=>{
+    let span = document.createElement("span");
+    span.innerText = char;
+    span.style.animationDelay = (text.length-index-1)*0.15+"s";
+    container.appendChild(span);
+  });
+
+  function goLogin(){
+    window.location.href="index.html";
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campusphere Default Database</title>
+</head>
+<body>
+<h2>Creating Default Database…</h2>
+<p>Please wait 3 seconds</p>
+
+<script>
+/* CLEAR OLD DATA */
+localStorage.clear();
+
+/* BRANCHES */
+const branches = ["AIDS","AIML","CSE","EEE","CIVIL","MECH","CIC","CSD"];
+
+/* ===== STUDENTS (1–100) ===== */
+for(let i=1;i<=100;i++){
+  let roll = "23AK1A" + String(i).padStart(2,"0");
+
+  let student = {
+    roll: roll,
+    name: "Student " + i,
+    branch: branches[i % branches.length],
+    attendance: 60 + (i % 40),
+    cgpa: (6 + (i % 4) + (i % 10)/10).toFixed(2),
+    supplies: i % 6 === 0 ? 1 : 0,
+    semester: "3-1",
+    role: "student"
+  };
+
+  localStorage.setItem("student_"+roll, JSON.stringify(student));
+}
+
+/* ===== FACULTY ===== */
+const faculty = [
+  {id:"FAC001",name:"Dr. Suresh Kumar",dept:"AIDS"},
+  {id:"FAC002",name:"Ms. Kavya",dept:"CSE"},
+  {id:"FAC003",name:"Mr. Ramesh",dept:"AIML"},
+  {id:"FAC004",name:"Dr. Prasad",dept:"EEE"},
+  {id:"FAC005",name:"Ms. Anusha",dept:"CIVIL"}
+];
+
+faculty.forEach(f=>{
+  localStorage.setItem("faculty_"+f.id, JSON.stringify(f));
+});
+
+/* ===== ADMIN ===== */
+localStorage.setItem("admin", JSON.stringify({
+  username:"admin",
+  password:"admin123",
+  role:"admin"
+}));
+
+document.body.innerHTML += "<h3>✅ DEFAULT DATABASE READY</h3>";
+</script>
+</body>
+</html>

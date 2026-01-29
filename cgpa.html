@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CGPA Summary - Campusphere</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fd;
+    }
+
+    .header {
+      background: #2563eb;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      width: 70%;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    h3 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      font-size: 15px;
+    }
+
+    th {
+      background: #e0e7ff;
+    }
+
+    .cgpa-box {
+      margin-top: 25px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: #047857;
+      background: #ecfdf5;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .note {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #374151;
+      text-align: center;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 25px;
+      background: #2563eb;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h2>CGPA Summary</h2>
+  <a href="student.html" style="color:white;text-decoration:none;">⬅ Back</a>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+<h3>Semester-wise Performance</h3>
+
+<div class="info">
+  <div>Name: RAPURU SUPRIYA</div>
+  <div>Roll No: 23AK1A30A4</div>
+</div>
+
+<table>
+  <tr>
+    <th>S.No</th>
+    <th>Semester</th>
+    <th>SGPA</th>
+  </tr>
+
+  <tr><td>1</td><td>I Year – I Semester</td><td>7.20</td></tr>
+  <tr><td>2</td><td>I Year – II Semester</td><td>7.45</td></tr>
+  <tr><td>3</td><td>II Year – I Semester</td><td>7.80</td></tr>
+  <tr><td>4</td><td>II Year – II Semester</td><td>7.90</td></tr>
+  <tr><td>5</td><td>III Year – I Semester</td><td>7.98</td></tr>
+
+</table>
+
+<div class="cgpa-box">
+  CGPA (Up to III-I): <br> <span>7.86</span>
+</div>
+
+<p class="note">
+CGPA is calculated as the cumulative average of SGPA values up to the completed semester.
+</p>
+
+<div style="text-align:center;">
+  <a href="student.html" class="back">Back to Dashboard</a>
+</div>
+
+</div>
+
+</body>
+</html>

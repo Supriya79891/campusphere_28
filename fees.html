@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fee Dues - Campusphere</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fd;
+    }
+
+    .header {
+      background: #2563eb;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card {
+      background: white;
+      width: 420px;
+      margin: 60px auto;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    .amount {
+      font-size: 28px;
+      color: #dc2626;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    button {
+      background: #22c55e;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h2>Fee Dues</h2>
+    <a href="student.html" style="color:white;text-decoration:none;">⬅ Back</a>
+  </div>
+
+  <div class="card">
+    <h3>Total Pending Fees</h3>
+    <div class="amount">₹ 12,000</div>
+    <p>Last Date: 30-Apr-2026</p>
+    <button onclick="pay()">Pay Now</button>
+  </div>
+
+  <script>
+    function pay() {
+      alert("Payment Gateway Integration – Demo Only ✅");
+    }
+  </script>
+
+</body>
+</html>

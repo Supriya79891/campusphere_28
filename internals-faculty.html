@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Internal Marks - Faculty View</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#f3f6fd;
+    }
+
+    .header{
+      background:#2563eb;
+      color:white;
+      padding:15px 30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .container{
+      width:98%;
+      margin:20px auto;
+      background:white;
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,.2);
+      overflow-x:auto;
+    }
+
+    h3{text-align:center;color:#1e3a8a}
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:20px;
+      font-size:13px;
+    }
+
+    th,td{
+      padding:10px;
+      text-align:center;
+      border-bottom:1px solid #ddd;
+    }
+
+    th{
+      background:#e0e7ff;
+      position:sticky;
+      top:0;
+    }
+
+    .pass{color:green;font-weight:bold}
+    .fail{color:red;font-weight:bold}
+
+    .edit{
+      background:#22c55e;
+      color:white;
+      border:none;
+      padding:4px 8px;
+      border-radius:4px;
+      cursor:pointer;
+    }
+
+    .save{
+      background:#2563eb;
+      color:white;
+      border:none;
+      padding:4px 8px;
+      border-radius:4px;
+      cursor:pointer;
+    }
+
+    input{
+      width:45px;
+      padding:3px;
+      text-align:center;
+    }
+
+    .back{
+      display:inline-block;
+      margin-top:20px;
+      background:#2563eb;
+      color:white;
+      padding:8px 16px;
+      border-radius:6px;
+      text-decoration:none;
+    }
+  </style>
+</head>
+
+<body onload="loadMarks()">
+
+<div class="header">
+  <h2>Internal Marks – Faculty View</h2>
+  <a href="faculty-dashboard.html" style="color:white;text-decoration:none;">⬅ Back</a>
+</div>
+
+<div class="container">
+
+<h3>Internal Assessment – All Students</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Roll</th>
+      <th>Branch</th>
+      <th>Subject</th>
+      <th>Mid-1</th>
+      <th>Mid-2</th>
+      <th>Final (30)</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="marksTable"></tbody>
+</table>
+
+<a href="faculty-dashboard.html" class="back">Back to Dashboard</a>
+
+</div>
+
+<script>
+function loadMarks(){
+
+  const branches = [
+    {code:"1A30", name:"AIDS"},
+    {code:"1A33", name:"AIML"},
+    {code:"1A05", name:"CSE"},
+    {code:"1A32", name:"CSD"},
+    {code:"1A02", name:"EEE"},
+    {code:"1A03", name:"MECH"},
+    {code:"1A01", name:"CIVIL"},
+    {code:"1A36", name:"CIC"}
+  ];
+
+  const subjects = [
+    "Deep Learning","Social Network Analysis","Big Data Analytics",
+    "Natural Language Processing","IFSE",
+    "Technical Paper Writing","Reinforcement Learning"
+  ];
+
+  let table = document.getElementById("marksTable");
+  let sno = 1;
+
+  branches.forEach(branch=>{
+    for(let i=1;i<=13;i++){
+      let roll = "23AK"+branch.code+i.toString().padStart(2,"0");
+
+      subjects.forEach(sub=>{
+        let m1 = Math.floor(Math.random()*16)+10;
+        let m2 = Math.floor(Math.random()*16)+10;
+        let final = Math.max(m1,m2);
+        let status = final>=15?"PASS":"FAIL";
+
+        table.innerHTML += `
+          <tr>
+            <td>${sno++}</td>
+            <td>${roll}</td>
+            <td>${branch.name}</td>
+            <td>${sub}</td>
+
+            <td class="m1">${m1}</td>
+            <td class="m2">${m2}</td>
+
+            <td class="final">${final}</td>
+            <td class="status ${status==="PASS"?"pass":"fail"}">${status}</td>
+
+            <td>
+              <button class="edit" onclick="editRow(this)">Edit</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+  });
+}
+
+function editRow(btn){
+  let row = btn.parentElement.parentElement;
+
+  let m1Cell = row.querySelector(".m1");
+  let m2Cell = row.querySelector(".m2");
+
+  m1Cell.innerHTML = `<input type="number" min="0" max="30" value="${m1Cell.innerText}">`;
+  m2Cell.innerHTML = `<input type="number" min="0" max="30" value="${m2Cell.innerText}">`;
+
+  btn.innerText = "Save";
+  btn.className = "save";
+  btn.onclick = function(){ saveRow(this); };
+}
+
+function saveRow(btn){
+  let row = btn.parentElement.parentElement;
+
+  let m1Input = row.querySelector(".m1 input");
+  let m2Input = row.querySelector(".m2 input");
+
+  let m1 = parseInt(m1Input.value);
+  let m2 = parseInt(m2Input.value);
+
+  let final = Math.max(m1,m2);
+  let status = final>=15?"PASS":"FAIL";
+
+  row.querySelector(".m1").innerText = m1;
+  row.querySelector(".m2").innerText = m2;
+  row.querySelector(".final").innerText = final;
+
+  let statusCell = row.querySelector(".status");
+  statusCell.innerText = status;
+  statusCell.className = "status "+(status==="PASS"?"pass":"fail");
+
+  btn.innerText = "Edit";
+  btn.className = "edit";
+  btn.onclick = function(){ editRow(this); };
+}
+</script>
+
+</body>
+</html>

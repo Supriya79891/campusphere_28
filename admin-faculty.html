@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campusphere | Faculty Reports</title>
+  <style>
+    body{margin:0;font-family:Arial;background:#f4f7fb}
+    header{
+      background:#1e40af;color:#fff;
+      padding:16px 30px
+    }
+    .container{padding:40px;max-width:1100px;margin:auto}
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:25px
+    }
+    .card{
+      background:#fff;padding:25px;border-radius:14px;
+      box-shadow:0 10px 25px rgba(0,0,0,.1)
+    }
+    h3{color:#1e40af;margin:0 0 10px}
+    .big{font-size:32px;font-weight:bold}
+    p{color:#555;font-size:14px}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:25px;
+      background:#fff;
+      box-shadow:0 10px 25px rgba(0,0,0,.08);
+      border-radius:12px;
+      overflow:hidden
+    }
+    th,td{
+      padding:14px;
+      text-align:left;
+      border-bottom:1px solid #eee
+    }
+    th{background:#e0e7ff;color:#1e40af}
+    a{color:#2563eb;text-decoration:none}
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>Campusphere – Faculty Reports</h2>
+</header>
+
+<div class="container">
+
+  <!-- SUMMARY CARDS -->
+  <div class="cards">
+
+    <div class="card">
+      <h3>Total Faculty</h3>
+      <div class="big" id="totalFaculty">0</div>
+      <p>All departments</p>
+    </div>
+
+    <div class="card">
+      <h3>Departments</h3>
+      <div class="big" id="deptCount">0</div>
+      <p>Active</p>
+    </div>
+
+    <div class="card">
+      <h3>Avg Faculty / Dept</h3>
+      <div class="big" id="avgFaculty">0</div>
+      <p>Average strength</p>
+    </div>
+
+  </div>
+
+  <!-- DEPARTMENT WISE TABLE -->
+  <table>
+    <thead>
+      <tr>
+        <th>Department</th>
+        <th>Faculty Count</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="facultyTable"></tbody>
+  </table>
+
+  <br>
+  <a href="admin-dashboard.html">← Back to Dashboard</a>
+
+</div>
+
+<script>
+/* SAME DATA STRUCTURE USED EVERYWHERE */
+const departments = [
+  {name:"AIDS", faculty:8},
+  {name:"CSE", faculty:12},
+  {name:"CSD", faculty:6},
+  {name:"AIML", faculty:7},
+  {name:"EEE", faculty:6},
+  {name:"MECH", faculty:9},
+  {name:"CIVIL", faculty:5},
+  {name:"IT", faculty:6}
+];
+
+let totalFaculty = 0;
+let table = "";
+
+departments.forEach(d=>{
+  totalFaculty += d.faculty;
+  table += `
+    <tr>
+      <td>${d.name}</td>
+      <td>${d.faculty}</td>
+      <td>${d.faculty >= 6 ? "Active" : "Needs Staff"}</td>
+    </tr>`;
+});
+
+document.getElementById("totalFaculty").innerText = totalFaculty;
+document.getElementById("deptCount").innerText = departments.length;
+document.getElementById("avgFaculty").innerText =
+  Math.round(totalFaculty / departments.length);
+
+document.getElementById("facultyTable").innerHTML = table;
+</script>
+
+</body>
+</html>

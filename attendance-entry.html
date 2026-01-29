@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mark Attendance - Campusphere</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#f4f7fb;
+      padding:30px;
+    }
+
+    h2{color:#1e3a8a}
+
+    .box{
+      background:#fff;
+      padding:25px;
+      border-radius:14px;
+      box-shadow:0 8px 20px rgba(0,0,0,.15);
+      margin-bottom:25px;
+      max-width:900px;
+    }
+
+    select,button{
+      padding:10px;
+      margin:8px 8px 8px 0;
+    }
+
+    button{
+      background:#2563eb;
+      color:white;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#fff;
+      box-shadow:0 8px 20px rgba(0,0,0,.1);
+    }
+
+    th,td{
+      padding:10px;
+      border:1px solid #ddd;
+      text-align:center;
+      font-size:14px;
+    }
+
+    th{
+      background:#2563eb;
+      color:white;
+      position:sticky;
+      top:0;
+    }
+
+    .present{color:green;font-weight:bold}
+    .absent{color:red;font-weight:bold}
+
+    .back{
+      display:inline-block;
+      margin-top:20px;
+      background:#2563eb;
+      color:white;
+      padding:8px 16px;
+      border-radius:6px;
+      text-decoration:none;
+      text-decoration:none;
+    }
+  </style>
+</head>
+
+<body onload="loadStudents()">
+
+<h2>Mark Attendance</h2>
+
+<!-- FILTERS -->
+<div class="box">
+  <select id="subject">
+    <option value="">Select Subject</option>
+    <option>Deep Learning</option>
+    <option>Social Network Analysis</option>
+    <option>Big Data Analytics</option>
+    <option>Natural Language Processing</option>
+    <option>IFSE</option>
+    <option>Technical Paper Writing</option>
+    <option>Reinforcement Learning</option>
+  </select>
+
+  <select id="month">
+    <option value="">Select Month</option>
+    <option>January</option>
+    <option>February</option>
+    <option>March</option>
+    <option>April</option>
+  </select>
+
+  <button onclick="submitAttendance()">Submit Attendance</button>
+</div>
+
+<!-- STUDENT TABLE -->
+<table>
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Roll Number</th>
+      <th>Branch</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody id="studentTable"></tbody>
+</table>
+
+<a href="faculty-dashboard.html" class="back">⬅ Back to Dashboard</a>
+
+<script>
+function loadStudents(){
+
+  const branches = [
+    {code:"1A30", name:"AIDS"},
+    {code:"1A33", name:"AIML"},
+    {code:"1A05", name:"CSE"},
+    {code:"1A32", name:"CSD"},
+    {code:"1A02", name:"EEE"},
+    {code:"1A03", name:"MECH"},
+    {code:"1A01", name:"CIVIL"},
+    {code:"1A36", name:"CIC"}
+  ];
+
+  let table = document.getElementById("studentTable");
+  let sno = 1;
+
+  branches.forEach(branch=>{
+    for(let i=1;i<=13;i++){   // ~104 students
+      let roll = "23AK"+branch.code+i.toString().padStart(2,"0");
+
+      table.innerHTML += `
+        <tr>
+          <td>${sno++}</td>
+          <td>${roll}</td>
+          <td>${branch.name}</td>
+          <td>
+            <label>
+              <input type="radio" name="${roll}" value="P" checked>
+              <span class="present">Present</span>
+            </label>
+            &nbsp;&nbsp;
+            <label>
+              <input type="radio" name="${roll}" value="A">
+              <span class="absent">Absent</span>
+            </label>
+          </td>
+        </tr>
+      `;
+    }
+  });
+}
+
+function submitAttendance(){
+  let subject = document.getElementById("subject").value;
+  let month = document.getElementById("month").value;
+
+  if(subject==="" || month===""){
+    alert("Please select subject and month");
+    return;
+  }
+
+  alert(
+    "Attendance Saved Successfully!\n\n" +
+    "Subject: " + subject + "\n" +
+    "Month: " + month
+  );
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campusphere | Library</title>
+  <style>
+    body{margin:0;font-family:Arial;background:#f4f7fb}
+    header{
+      background:#1e40af;color:#fff;
+      padding:16px 30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center
+    }
+    .container{padding:40px;max-width:1100px;margin:auto}
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+      margin-bottom:30px
+    }
+    .card{
+      background:#fff;padding:25px;border-radius:14px;
+      box-shadow:0 10px 25px rgba(0,0,0,.1)
+    }
+    h3{color:#1e40af;margin:0 0 8px}
+    .big{font-size:30px;font-weight:bold}
+    p{color:#555;font-size:14px}
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#fff;
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 10px 25px rgba(0,0,0,.08)
+    }
+    th,td{
+      padding:14px;
+      border-bottom:1px solid #eee;
+      text-align:left
+    }
+    th{background:#e0e7ff;color:#1e40af}
+
+    button{
+      padding:6px 12px;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+      background:#2563eb;
+      color:#fff
+    }
+
+    .return{background:#16a34a}
+    .disabled{background:#9ca3af;cursor:not-allowed}
+
+    a{color:#2563eb;text-decoration:none}
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>📚 Campusphere – Library</h2>
+  <span id="roleText"></span>
+</header>
+
+<div class="container">
+
+  <!-- SUMMARY -->
+  <div class="cards">
+    <div class="card">
+      <h3>Total Books</h3>
+      <div class="big" id="totalBooks">0</div>
+    </div>
+    <div class="card">
+      <h3>Available</h3>
+      <div class="big" id="availableBooks">0</div>
+    </div>
+    <div class="card">
+      <h3>Issued</h3>
+      <div class="big" id="issuedBooks">0</div>
+    </div>
+  </div>
+
+  <!-- BOOK LIST -->
+  <table>
+    <thead>
+      <tr>
+        <th>Book Title</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="bookTable"></tbody>
+  </table>
+
+  <br>
+  <a href="#" onclick="goBack()">← Back to Dashboard</a>
+
+</div>
+
+<script>
+/* ROLE FROM LOGIN */
+let role = localStorage.getItem("role") || "student";
+document.getElementById("roleText").innerText =
+  role === "faculty" ? "Faculty Access" : "Student Access";
+
+/* LIBRARY DATA */
+const books = [
+  {title:"Artificial Intelligence", author:"Russell", cat:"AI", issued:false},
+  {title:"Machine Learning", author:"Tom Mitchell", cat:"AI", issued:true},
+  {title:"Data Structures", author:"Sahni", cat:"CS", issued:false},
+  {title:"Operating Systems", author:"Galvin", cat:"CS", issued:true},
+  {title:"DBMS", author:"Korth", cat:"CS", issued:false},
+  {title:"Deep Learning", author:"Goodfellow", cat:"AI", issued:false}
+];
+
+let total = books.length;
+let issued = books.filter(b=>b.issued).length;
+let available = total - issued;
+
+document.getElementById("totalBooks").innerText = total;
+document.getElementById("issuedBooks").innerText = issued;
+document.getElementById("availableBooks").innerText = available;
+
+/* RENDER BOOKS */
+let table = "";
+books.forEach((b,i)=>{
+  let btn="";
+  if(b.issued){
+    btn = role==="faculty"
+      ? `<button class="return" onclick="returnBook(${i})">Return</button>`
+      : `<button class="disabled">Issued</button>`;
+  }else{
+    btn = `<button onclick="issueBook(${i})">Issue</button>`;
+  }
+
+  table += `
+    <tr>
+      <td>${b.title}</td>
+      <td>${b.author}</td>
+      <td>${b.cat}</td>
+      <td>${b.issued ? "Issued" : "Available"}</td>
+      <td>${btn}</td>
+    </tr>`;
+});
+document.getElementById("bookTable").innerHTML = table;
+
+/* ACTIONS */
+function issueBook(i){
+  alert("Book issued successfully (demo)");
+}
+function returnBook(i){
+  alert("Book returned successfully (faculty access)");
+}
+
+/* BACK NAV */
+function goBack(){
+  if(role==="faculty") window.location.href="faculty-dashboard.html";
+  else window.location.href="student.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campusphere | Total Users</title>
+  <style>
+    body{margin:0;font-family:Arial;background:#f4f7fb}
+    header{
+      background:#1e40af;color:#fff;
+      padding:16px 30px
+    }
+    .container{padding:40px;max-width:1100px;margin:auto}
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:25px
+    }
+    .card{
+      background:#fff;padding:25px;border-radius:14px;
+      box-shadow:0 10px 25px rgba(0,0,0,.1)
+    }
+    h3{color:#1e40af;margin:0 0 10px}
+    .big{font-size:32px;font-weight:bold}
+    p{color:#555;font-size:14px}
+    a{color:#2563eb;text-decoration:none}
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>Campusphere – Total Users</h2>
+</header>
+
+<div class="container">
+  <div class="cards">
+
+    <div class="card">
+      <h3>Total Students</h3>
+      <div class="big" id="students">0</div>
+      <p>Across all departments</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Faculty</h3>
+      <div class="big" id="faculty">0</div>
+      <p>Teaching staff</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Users</h3>
+      <div class="big" id="users">0</div>
+      <p>Students + Faculty</p>
+    </div>
+
+    <div class="card">
+      <h3>Departments</h3>
+      <div class="big" id="departments">0</div>
+      <p>Active departments</p>
+    </div>
+
+  </div>
+
+  <br>
+  <a href="admin-dashboard.html">← Back to Dashboard</a>
+</div>
+
+<script>
+/* SAME DATA MODEL AS DEPARTMENTS PAGE */
+
+const departments = [
+  {name:"AIDS", students:120, faculty:8},
+  {name:"CSE", students:180, faculty:12},
+  {name:"CSD", students:90, faculty:6},
+  {name:"AIML", students:110, faculty:7},
+  {name:"EEE", students:100, faculty:6},
+  {name:"MECH", students:140, faculty:9},
+  {name:"CIVIL", students:80, faculty:5},
+  {name:"IT", students:95, faculty:6}
+];
+
+let totalStudents = 0;
+let totalFaculty = 0;
+
+departments.forEach(d=>{
+  totalStudents += d.students;
+  totalFaculty += d.faculty;
+});
+
+document.getElementById("students").innerText = totalStudents;
+document.getElementById("faculty").innerText = totalFaculty;
+document.getElementById("users").innerText = totalStudents + totalFaculty;
+document.getElementById("departments").innerText = departments.length;
+</script>
+
+</body>
+</html>

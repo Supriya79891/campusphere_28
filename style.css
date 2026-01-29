@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Background */
+.login-body {
+  min-height: 100vh;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url("https://www.collegebatch.com/static/clg-gallery/annamacharya-institute-of-technology-sciences-tirupati-274526.jpg");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* TOP BAR */
+.top-bar {
+  width: 100%;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+/* Person block */
+.top-person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* BIG PHOTOS */
+.top-person img {
+  width: 110px;      /* photo size */
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid white;
+  background: white;
+}
+
+/* Text under photo */
+.top-text {
+  text-align: center;
+  font-size: 14px;
+}
+
+.top-text span {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* Login box */
+.login-box {
+  background: white;
+  width: 330px;
+  padding: 30px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+  margin-top: 60px;
+}
+
+.login-box h1 {
+  color: #2563eb;
+  margin-bottom: 6px;
+}
+
+.login-box p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.login-box input {
+  width: 92%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Buttons */
+.student-btn {
+  width: 100%;
+  padding: 11px;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.faculty-btn {
+  width: 100%;
+  padding: 11px;
+  background-color: #f97316;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}

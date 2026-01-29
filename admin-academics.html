@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin | Academics</title>
+  <style>
+    body{font-family:Arial;background:#f4f7fb;margin:0}
+    header{background:#1e40af;color:#fff;padding:15px 25px}
+    .container{padding:40px;max-width:1000px;margin:auto}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+    .card{
+      background:#fff;padding:25px;border-radius:14px;
+      box-shadow:0 10px 20px rgba(0,0,0,.1)
+    }
+    h3{color:#1e40af}
+    .big{font-size:28px;font-weight:bold}
+    a{color:#2563eb;text-decoration:none}
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>Campusphere – Academic Reports</h2>
+</header>
+
+<div class="container">
+  <div class="cards">
+
+    <div class="card">
+      <h3>Total Students</h3>
+      <div class="big" id="students">0</div>
+    </div>
+
+    <div class="card">
+      <h3>Avg Attendance</h3>
+      <div class="big" id="attendance">0%</div>
+    </div>
+
+    <div class="card">
+      <h3>Students with Supplies</h3>
+      <div class="big" id="supplies">0</div>
+    </div>
+
+  </div>
+
+  <br>
+  <a href="admin-dashboard.html">← Back to Dashboard</a>
+</div>
+
+<script>
+let total=0,att=0,sup=0;
+
+for(let key in localStorage){
+  if(key.startsWith("student_")){
+    let s = JSON.parse(localStorage.getItem(key));
+    total++;
+    att += s.attendance;
+    if(s.supplies>0) sup++;
+  }
+}
+
+document.getElementById("students").innerText = total;
+document.getElementById("attendance").innerText =
+  total ? Math.round(att/total)+"%" : "0%";
+document.getElementById("supplies").innerText = sup;
+</script>
+
+</body>
+</html>

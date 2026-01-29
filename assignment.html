@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Assignment Submission - Campusphere</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fd;
+    }
+
+    .header {
+      background: #2563eb;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      width: 420px;
+      margin: 50px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    h3 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+    }
+
+    select, input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      background: #22c55e;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .success {
+      margin-top: 15px;
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 18px;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h2>Assignment Submission</h2>
+    <a href="student.html" style="color:white;text-decoration:none;">⬅ Back</a>
+  </div>
+
+  <!-- FORM -->
+  <div class="container">
+    <h3>Submit Assignment</h3>
+
+    <form onsubmit="submitAssignment(event)">
+      
+      <label>Subject</label>
+      <select required>
+        <option value="">-- Select Subject --</option>
+        <option>Deep Learning</option>
+        <option>Social Network Analysis</option>
+        <option>Big Data Analytics</option>
+        <option>Natural Language Processing</option>
+        <option>IFSE</option>
+        <option>Technical Paper Writing</option>   
+        <option>Reinforcement Learning</option>
+
+      </select>
+
+      <label>Assignment File (PDF / DOC)</label>
+      <input type="file" required>
+
+      <button class="submit-btn">Submit Assignment</button>
+    </form>
+
+    <div class="success" id="successMsg">
+      ✅ Assignment submitted successfully!
+    </div>
+
+    <div style="text-align:center;">
+      <a href="student.html" class="back">Back to Dashboard</a>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    function submitAssignment(e) {
+      e.preventDefault();
+      document.getElementById("successMsg").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>

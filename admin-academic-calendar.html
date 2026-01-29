@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campusphere | Academic Calendar</title>
+  <style>
+    body{margin:0;font-family:Arial;background:#f4f7fb}
+    header{
+      background:#1e40af;color:#fff;
+      padding:16px 30px
+    }
+    .container{padding:40px;max-width:1100px;margin:auto}
+    h3{color:#1e40af;margin-bottom:15px}
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#fff;
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 10px 25px rgba(0,0,0,.1)
+    }
+    th,td{
+      padding:14px;
+      text-align:left;
+      border-bottom:1px solid #eee
+    }
+    th{
+      background:#e0e7ff;
+      color:#1e40af
+    }
+    .tag{
+      padding:4px 10px;
+      border-radius:12px;
+      font-size:12px;
+      color:#fff
+    }
+    .exam{background:#dc2626}
+    .holiday{background:#16a34a}
+    .event{background:#2563eb}
+    .academic{background:#ca8a04}
+
+    a{color:#2563eb;text-decoration:none}
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>Campusphere – Academic Calendar (2025–26)</h2>
+</header>
+
+<div class="container">
+
+<h3>Academic Schedule</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Event</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody id="calendarBody"></tbody>
+</table>
+
+<br>
+<a href="admin-dashboard.html">← Back to Dashboard</a>
+
+</div>
+
+<script>
+/* PROFESSIONAL ACADEMIC CALENDAR DATA */
+const calendar = [
+  {date:"01 Jun 2025", event:"Commencement of Classes", type:"Academic"},
+  {date:"15 Jul 2025", event:"Mid-1 Examinations", type:"Exam"},
+  {date:"20 Jul 2025", event:"Mid-1 Results", type:"Academic"},
+  {date:"15 Aug 2025", event:"Independence Day", type:"Holiday"},
+  {date:"10 Sep 2025", event:"Mid-2 Examinations", type:"Exam"},
+  {date:"15 Sep 2025", event:"Mid-2 Results", type:"Academic"},
+  {date:"01 Oct 2025", event:"Technical Fest", type:"Event"},
+  {date:"10 Oct 2025", event:"Dussehra Holidays", type:"Holiday"},
+  {date:"05 Nov 2025", event:"End Semester Exams", type:"Exam"},
+  {date:"25 Nov 2025", event:"Semester Results", type:"Academic"}
+];
+
+let rows="";
+
+calendar.forEach(c=>{
+  let cls="";
+  if(c.type==="Exam") cls="exam";
+  else if(c.type==="Holiday") cls="holiday";
+  else if(c.type==="Event") cls="event";
+  else cls="academic";
+
+  rows += `
+    <tr>
+      <td>${c.date}</td>
+      <td>${c.event}</td>
+      <td><span class="tag ${cls}">${c.type}</span></td>
+      <td>${c.event} scheduled as per JNTU norms</td>
+    </tr>`;
+});
+
+document.getElementById("calendarBody").innerHTML = rows;
+</script>
+
+</body>
+</html>
