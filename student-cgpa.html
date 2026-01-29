@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CGPA - Campusphere</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#f3f6fd;
+    }
+
+    .header{
+      background:#2563eb;
+      color:white;
+      padding:15px 30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .container{
+      width:80%;
+      margin:40px auto;
+      background:white;
+      padding:30px;
+      border-radius:14px;
+      box-shadow:0 8px 20px rgba(0,0,0,.2);
+    }
+
+    h3{
+      text-align:center;
+      color:#1e3a8a;
+      margin-bottom:25px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    th,td{
+      padding:12px;
+      border-bottom:1px solid #ddd;
+      text-align:center;
+    }
+
+    th{
+      background:#e0e7ff;
+    }
+
+    .cgpa-box{
+      margin-top:30px;
+      text-align:center;
+      font-size:22px;
+      font-weight:bold;
+      color:#1e3a8a;
+    }
+
+    .success{color:green}
+    .warning{color:red}
+
+    .back{
+      display:inline-block;
+      margin-top:25px;
+      background:#2563eb;
+      color:white;
+      padding:8px 16px;
+      border-radius:6px;
+      text-decoration:none;
+    }
+  </style>
+</head>
+
+<body onload="loadCGPA()">
+
+<!-- HEADER -->
+<div class="header">
+  <h2>Student CGPA</h2>
+  <a href="student.html" style="color:white;text-decoration:none;">⬅ Back</a>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <h3>Semester-wise Performance</h3>
+
+  <table>
+    <tr>
+      <th>Semester</th>
+      <th>SGPA</th>
+    </tr>
+
+    <tr><td>1-1</td><td class="sgpa">7.2</td></tr>
+    <tr><td>1-2</td><td class="sgpa">7.5</td></tr>
+    <tr><td>2-1</td><td class="sgpa">7.8</td></tr>
+    <tr><td>2-2</td><td class="sgpa">8.1</td></tr>
+    <tr><td>3-1</td><td class="sgpa">8.4</td></tr>
+
+  </table>
+
+  <div class="cgpa-box">
+    CGPA: <span id="cgpa"></span>
+    <div id="status"></div>
+  </div>
+
+  <div style="text-align:center;">
+    <a href="student.html" class="back">Back to Dashboard</a>
+  </div>
+
+</div>
+
+<script>
+function loadCGPA(){
+  let sgpaElements = document.getElementsByClassName("sgpa");
+  let total = 0;
+
+  for(let i=0;i<sgpaElements.length;i++){
+    total += parseFloat(sgpaElements[i].innerText);
+  }
+
+  let cgpa = (total / sgpaElements.length).toFixed(2);
+  document.getElementById("cgpa").innerText = cgpa;
+
+  let status = document.getElementById("status");
+
+  if(cgpa >= 7.5){
+    status.innerHTML = "<span class='success'>Good Academic Standing</span>";
+  }else{
+    status.innerHTML = "<span class='warning'>Needs Improvement</span>";
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,86 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Campusphere Login</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Welcome | Campusphere</title>
+
+  <style>
+    body{
+      margin:0;
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      background:#ffffff;
+      font-family:'Poppins', Arial, sans-serif;
+    }
+
+    /* TITLE */
+    .title{
+      display:flex;
+      margin-bottom:20px;
+    }
+
+    .title span{
+      font-size:42px;
+      font-weight:600;
+      color:#1e88e5;
+      opacity:0;
+      animation:appear 0.6s ease forwards;
+    }
+
+    /* LOGO */
+    .logo{
+      width:180px;
+    }
+
+    /* BUTTON */
+    .btn{
+      margin-top:30px;
+      padding:14px 40px;
+      font-size:18px;
+      font-weight:600;
+      color:white;
+      background:linear-gradient(135deg,#1e88e5,#64b5f6);
+      border:none;
+      border-radius:30px;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(30,136,229,.35);
+    }
+
+    .btn:hover{
+      transform:scale(1.05);
+    }
+
+    /* ANIMATION */
+    @keyframes appear{
+      from{
+        transform:translateX(20px);
+        opacity:0;
+      }
+      to{
+        transform:translateX(0);
+        opacity:1;
+      }
+    }
+  </style>
 </head>
 
-<body class="login-body">
+<body>
 
-<div class="login-box">
-  <h1>Campusphere</h1>
-  <p>Smart Digital Campus Management System</p>
+  <!-- TITLE -->
+  <div class="title" id="title"></div>
 
-  <input type="text" id="userId" placeholder="Roll Number / Faculty ID / Admin ID">
-  <input type="password" id="password" placeholder="Password">
+  <!-- LOGO -->
+  <img src="C:\Users\rapur\Desktop\campusphere\WhatsApp Image 2026-01-29 at 5.18.49 PM.jpg.jpeg" class="logo" alt="Campusphere Logo">
 
-  <button class="student-btn" onclick="studentLogin()">Student Login</button>
-  <button class="faculty-btn" onclick="facultyLogin()">Faculty Login</button>
-
-  <button style="margin-top:10px;background:#ef4444;color:#fff;border:none;padding:10px;border-radius:6px"
-          onclick="adminLogin()">
-    Admin Login
-  </button>
-</div>
+  <!-- BUTTON -->
+  <button class="btn" onclick="goLogin()">Welcome</button>
 
 <script>
-function studentLogin(){
-  let id = document.getElementById("userId").value.trim();
-  let pw = document.getElementById("password").value.trim();
+  const text = "CAMPUSPHERE";
+  const container = document.getElementById("title");
 
-  if(id === "" || pw === ""){
-    alert("Roll Number and Password are required");
-    return;
+  text.split("").forEach((char,index)=>{
+    let span = document.createElement("span");
+    span.innerText = char;
+    span.style.animationDelay = (text.length-index-1)*0.15+"s";
+    container.appendChild(span);
+  });
+
+  function goLogin(){
+    window.location.href="login.html";
   }
-
-  // 🔐 basic prototype password check
-  if(pw !== "student123"){
-    alert("Invalid Student Password");
-    return;
-  }
-
-  localStorage.setItem("role","student");
-  localStorage.setItem("roll", id);
-
-  window.location.href = "student.html";
-}
-
-function facultyLogin(){
-  let id = document.getElementById("userId").value.trim();
-  let pw = document.getElementById("password").value.trim();
-
-  if(id === "" || pw === ""){
-    alert("Faculty ID and Password are required");
-    return;
-  }
-
-  if(pw !== "faculty123"){
-    alert("Invalid Faculty Password");
-    return;
-  }
-
-  localStorage.setItem("role","faculty");
-  localStorage.setItem("facultyId", id);
-
-  window.location.href = "faculty-dashboard.html";
-}
-
-function adminLogin(){
-  let id = document.getElementById("userId").value.trim();
-  let pw = document.getElementById("password").value.trim();
-
-  if(id === "" || pw === ""){
-    alert("Admin ID and Password are required");
-    return;
-  }
-
-  if(id === "admin" && pw === "admin123"){
-    localStorage.setItem("role","admin");
-    window.location.href = "admin-dashboard.html";
-  }else{
-    alert("Invalid Admin Credentials");
-  }
-}
 </script>
 
 </body>
